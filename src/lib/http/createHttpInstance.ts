@@ -3,31 +3,28 @@ import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 const createHttpInstance = (
   axiosConfig?: AxiosRequestConfig,
 ): AxiosInstance => {
+  const defaultHeaders = {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+    "X-Custom-Header": "",
+  };
+
   const instance = axios.create({
     baseURL: axiosConfig?.baseURL,
-    headers: axiosConfig?.headers,
+    headers: {
+      ...defaultHeaders,
+      ...axiosConfig?.headers,
+    },
   });
 
   instance.interceptors.request.use(
-    (config) => {
-      return config;
-    },
-    (error) => {
-      console.error("Error:", error);
-
-      return Promise.reject(error);
-    },
+    (config) => config,
+    (error) => Promise.reject(error),
   );
 
   instance.interceptors.response.use(
-    (response) => {
-      return response;
-    },
-    (error) => {
-      console.error("Error en respuesta:", error);
-
-      return Promise.reject(error);
-    },
+    (response) => response,
+    (error) => Promise.reject(error),
   );
 
   return instance;

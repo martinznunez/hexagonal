@@ -1,5 +1,5 @@
 import { User } from "../domain/types";
 
-export const renderData = (data: User) => {
+export const renderDataUser = (data: User) => {
   return data;
 };

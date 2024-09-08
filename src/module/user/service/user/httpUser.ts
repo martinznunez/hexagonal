@@ -1,5 +1,5 @@
-import { RequestOptions } from "../../../infrastructure/domain/types";
-import fetcher from "../../../infrastructure/http/fetcher";
+import { RequestOptions } from "../../../../lib/domain/types";
+import fetcher from "../../../../lib/http/fetcher";
 
 interface UserResponse {
   results: string[];
